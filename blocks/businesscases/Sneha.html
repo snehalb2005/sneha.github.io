@@ -1,1 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Business Cases Aligned with SDGs</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    /* General Styles */
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #e5f1f6; /* Light blue background */
+      color: #333;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 20px;
+      background: #ffffff; /* White background for content */
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+
+    h1.main {
+      text-align: center;
+      color: #ffffff;
+      background-color: #00bcd4; /* Teal background for the main heading */
+      border-radius: 10rem;
+      margin-bottom: 30px;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    .section {
+      margin-bottom: 40px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .section:hover {
+      transform: scale(1.03);
+      box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .section h2 {
+      text-align: center;
+      color: #34495e;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .strategy {
+      margin-bottom: 20px;
+      padding: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .strategy:hover {
+      transform: scale(1.02);
+      box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .strategy h3 {
+      font-size: 18px;
+      color: #00796b; /* Teal color for strategy headings */
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .strategy p {
+      line-height: 1.6;
+      margin: 5px 0;
+    }
+
+    .strategy p strong {
+      color: #2c3e50;
+    }
+
+    /* Section-Specific Styles */
+    .industrial .strategy {
+      background-color: #e1f5fe; /* Light cyan for industrial section */
+    }
+
+    .environmental .strategy {
+      background-color: #c8e6c9; /* Light green for environmental section */
+    }
+
+    .education .strategy {
+      background-color: #fff9c4; /* Light yellow for education section */
+    }
+
+    .industrial h2 {
+      color: #0288d1; /* Blue color for industrial heading */
+    }
+
+    .environmental h2 {
+      color: #388e3c; /* Green color for environmental heading */
+    }
+
+    .education h2 {
+      color: #fbc02d; /* Yellow color for education heading */
+    }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      background-color: #00bcd4; /* Teal background for navbar */
+      width: 100%;
+      z-index: 1000;
+      padding: 1rem 1rem;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .nav-list {
+      list-style: none;
+      display: flex;
+      justify-content: space-around;
+      align-content: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-list li {
+      margin: 0;
+      color: #ffffff;
+    }
+
+    .nav-list a {
+      text-decoration: none;
+      color: #ffffff;
+      padding: 1rem 1rem;
+      transition: background-color 0.3s ease;
+    }
+
+    .nav-list a:hover {
+      background-color: #0097a7; /* Slightly darker teal on hover */
+      transform: scale(1.02);
+      box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+      transition: transform 0.2s, box-shadow 0.2s;
+      border-radius: 4px;
+    }
+
+    h2.code {
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      background-color: #ff7043; /* Coral background for code section */
+      text-align: center;
+      font-style: oblique;
+      border-radius: 4rem;
+      display: inline-flex;
+      padding: 0.7rem 1rem;
+    }
+
+    h2.code:hover {
+      background-color: #f4511e; /* Darker coral on hover */
+      color: #212529;
+      transform: scale(1.05);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .content {
+      padding: 2rem;
+      font-size: 1.2rem;
+      line-height: 1.6;
+    }
+
+    .center-link {
+      text-align: center;
+      margin: 1rem 0;
+    }
+
+    .code {
+      color: #ffffff; /* White color for better visibility */
+      font-weight: bold;
+      text-decoration: none;
+      padding: 10px 20px;
+      background-color: #ff7043; /* Coral background for better contrast */
+      border-radius: 5px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .code:hover {
+      background-color: #f4511e; /* Darker coral on hover */
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <ul class="nav-list">
+      <li><a href="/PortfolioDemo.github.io/blocks/home/home.html">Home</a></li>
+      <li><a href="/PortfolioDemo.github.io/index.html">Project Introduction</a></li>
+      <li><a href="/PortfolioDemo.github.io/blocks/learningref/teamlearning.html">Learning Reflections</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <button onclick="window.history.back();" style="background-color: #00bcd4; color: white; border: none; padding: 10px 20px; font-size: 1rem; cursor: pointer; border-radius: 5px; margin-bottom: 20px;">Back</button>
+    <h1 class="main">Business Cases with SDGs</h1>
+
+    <div class="Unemployment Rate Calculation">
+      <h2>Unemployment Rate Calculation</h2>
+      <div class="strategy">
+        <h3>SDG Target 8</h3>
+        <p><strong>Focus:</strong> Decent Work and Economic Growth</p>
+        <p><strong>SDG Indicator 8.5.2:</strong> Unemployment rate, by sex, age, and persons with disabilities.</p>
+      </div>
+    </div>
+
+    <div class="Job Matching System">
+      <h2>Job Matching System</h2>
+      <div class="strategy">
+        <h3>SDG Target 8</h3>
+        <p><strong>Focus:</strong> Decent Work and Economic Growth</p>
+        <p><strong>SDG Indicator 8.6.1:</strong> Proportion of youth not in education, employment, or training (focus on matching jobs to individuals).</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="center-link">
+    <a href="../businesscases/Shreyacode.cpp" class="code">Click Here for Code Implementation</a>
+  </div>
+</body>
+</html>
 
