@@ -6,61 +6,193 @@
     <title>Portfolio</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #e3f2fd; /* Light blue */
+            color: #2c3e50; /* Dark blue-gray for text */
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            background-color: #2980b9; /* Blue */
+            padding: 1rem;
+        }
+
+        .nav-list {
+            list-style: none;
+            display: flex;
+            justify-content: flex-start;
+            gap: 1rem;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-list li a {
+            text-decoration: none;
+            color: #ecf0f1; /* Light gray text */
+            font-weight: 600;
+        }
+
+        .nav-list li a:hover {
+            color: #f39c12; /* Yellow for hover */
+        }
+
+        section h2 {
+            color: #2980b9; /* Blue for headings */
+            text-align: center;
+            margin: 1rem 0;
+        }
+
+        section ul {
+            padding: 1rem 2rem;
+            background-color: #ffffff; /* White background for list */
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        section ul li strong {
+            color: #f39c12; /* Yellow for strong text */
+        }
+
+        .custom-link {
+            color: #2980b9; /* Blue */
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .custom-link:hover {
+            color: #f39c12; /* Yellow hover */
+        }
+
+        blockquote {
+            font-style: italic;
+            color: #2980b9; /* Blue */
+            border-left: 4px solid #f39c12; /* Yellow border */
+            margin: 2rem;
+            padding-left: 1rem;
+        }
+
+        .profile-pic {
+            display: block;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 1rem auto;
+            border: 4px solid #f39c12; /* Yellow border for image */
+        }
+
+        .name {
+            text-align: center;
+            color: #2980b9; /* Blue for name */
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        section p {
+            text-align: center;
+            margin: 0.5rem 0;
+            color: #333; /* Standard text color */
+        }
+
+        .center-link {
+            text-align: center;
+            margin: 1rem 0;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Hello, I'm [Sneha L B]👋</h1>
-        <p>I am passionate about technology and problem-solving. Here's a glimpse of my work:</p>
-    </header>
+    <nav class="navbar">
+        <ul class="nav-list">
+            <li><a href="/PortfolioDemo.github.io/blocks/home/home.html">Home</a></li>
+            <li><a href="/PortfolioDemo.github.io/introduction.html">Project Introduction</a></li>
+            <li><a href="/PortfolioDemo.github.io/blocks/learningref/teamlearning.html">Learning Reflections</a></li>
+        </ul>
+    </nav>
 
     <section>
-        <h2>🛠 Projects</h2>
+        <h2>City Design</h2>
         <ul>
-            <li><strong>Project 1</strong>: A short description of your project1:Our city plan for Hamsaghar, situated near Rajkot,Gujarat, features a well-rounded and sustainable urban design focusing on infrastructure, public services, and environmental conservation..</li>
-          
+            <li><strong>Name of the city:</strong> <span>"AARAMBHA"</span></li>
+            <li>Our city plan for Aarambha, situated in Raichur district in Karnataka, features a well-rounded and sustainable urban design focusing on infrastructure, public services, and environmental conservation.</li>
+            <li>
+                <center>
+                    <img src="https://raw.githubusercontent.com/01fe23bcs186/PortfolioDemo.github.io/main/images/City.jpeg" alt="City Plan Image" width="80%">
+                </center>
+            </li>
         </ul>
-
-        <h2>🚀 Skills</h2>
-        <ul>
-            <li>C++, Python, JavaScript</li>
-            <li>Data Structures and Algorithms</li>
-            <li>Web Development (React.js, Node.js)</li>
-        </ul>
-
-        <h2>🌐 Find Me Online</h2>
-        <ul>
-            <li><a href="https://github.com/snehalb2005" target="_blank">GitHub</a></li>
-            <li><a href="https://linkedin.com/in/your-linkedin-profile" target="_blank">LinkedIn</a></li>
-        </ul>
-
-        <h2>Portfolio Topic</h2>
-        <dl>
-            <dt>Course Name</dt>
-            <dd>Algorithmic Problem Solving</dd>
-
-            <dt>Course Code</dt>
-            <dd>22ECS202</dd>
-
-           <dt>Name</dt>
-           <dd>1.Sneha L Bagalkot</dd>
-          <dd>2.Disha Sirsikar</dd>
-          <dd>3.Prateeksha P Shet</dd>
-          <dd>4.Jeevan</dd>
-           <dt>SRN</dt>
-           <dd>1.01FE23BCS174</dd>
-          <dd>2.01fe23bcs187</dd>
-          <dd>3.01fe23bcs177</dd>
-          <dd>4.01fe23bcs183</dd>
-          <dt>Course Instructor</dt>
-          <dd>Mrs.Vijayalakshmi S</dd>
-          <dt>University</dt>
-          <dd>Kle technological University Hubli</dd>
-          <dt>Portfolio Topic/Domain</dt>
-          <dd>City planing</dd>
-           
-        </dl>
-
+        <section class="description">
+            <div class="link-section">
+                <a class="custom-link" href="/PortfolioDemo.github.io/introduction.html">Click Here to see the course project introduction</a>
+            </div>
+        </section>
+        <section class="description">
+            <div class="link-section">
+                <a class="custom-link" href="/PortfolioDemo.github.io/blocks/businesscases/business.html">Click Here to see the business cases</a>
+            </div>
+        </section>
+        
         <blockquote>“The only way to do great work is to love what you do.” – Steve Jobs</blockquote>
+    </section>
+    <section>
+        <div>
+            <div>
+                <img src="https://raw.githubusercontent.com/01fe23bcs186/PortfolioDemo.github.io/main/images/shreya.jpeg"  class="profile-pic">
+                <p class="name">Shreya Hadikar</p>
+                <p>USN: 01FE23BCS186</p>
+                <p>ROLL NO: 427</p> 
+            </div>
+        </div>
+    </section>
+    
+    <section>
+        <div>
+             <h2 id="meet">Meet My Team 🕵</h2>
+        </div>
+        <div class="team-container">
+            <div class="team-member">
+                <img src="https://raw.githubusercontent.com/01fe23bcs182/Priyanka.github.io/main/Images/Preeti (2).jpeg" alt="Team Member 1" class="profile-pic">
+                <div class="member-info">
+                    <p class="name">Preeti </p>
+                    <p>USN: 01FE23BCS154</p>
+                     <div class="center-link">
+                          <a href="https://preeti0427.github.io/DAA-portfolio-Preeti/">Click Here to visit Preeti's GitHub Page</a>
+                     </div>
+                    <p>ROLL NO: 423</p>
+                </div>
+            </div>
+
+            <div class="team-member">
+                <img src="https://raw.githubusercontent.com/01fe23bcs186/PortfolioDemo.github.io/main/images/priyanka.jpeg" alt="Team Member 2" class="profile-pic">
+                <div class="member-info">
+                    <p class="name">Priyanka Badiger</p>
+                    <p>USN: 01FE23BCS182</p>
+                    <div class="center-link">
+                          <a href="https://01fe23bcs182.github.io/Priyanka.github.io/">Click Here to visit Priyanka's GitHub Page</a>
+                    </div>
+                    <p>ROLL NO: 425</p>
+                </div>
+            </div>
+            
+            <div class="team-member">
+                <img src="https://raw.githubusercontent.com/01fe23bcs186/PortfolioDemo.github.io/main/images/aishwarya.jpeg" alt="Team Member 3" class="profile-pic">
+                <div class="member-info">
+                    <p class="name">Aishwarya Talikoti</p>
+                    <p>USN: 01FE23BCS189</p>
+                     <div class="center-link">
+                          <a href="https://01fe23bcs189.github.io/Aishwarya.github.io/">Click Here to visit Aishwarya's GitHub Page</a>
+                    </div>
+                    <p>ROLL NO: 429</p>
+                </div>
+            </div>
+
+        </div>
     </section>
 </body>
 </html>
+
