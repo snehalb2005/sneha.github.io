@@ -157,4 +157,55 @@ int main() {
 
     return 0;
 }
+//5.difficulty in itinerary planning
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <iomanip> // For formatted output
 
+// Structure to represent a destination
+struct Destination {
+    std::string name;
+    double proximity; // Distance from the starting point
+    int importance;   // Importance level (higher is better)
+};
+
+// Comparator function to sort destinations
+bool compareDestinations(const Destination& a, const Destination& b) {
+    // Prioritize higher importance, then closer proximity
+    if (a.importance != b.importance)
+        return a.importance > b.importance;
+    return a.proximity < b.proximity;
+}
+
+int main() {
+    int n;
+    std::cout << "Enter the number of destinations: ";
+    std::cin >> n;
+
+    std::vector<Destination> destinations(n);
+
+    // Input destinations
+    for (int i = 0; i < n; ++i) {
+        std::cout << "Enter name, proximity (km), and importance (1-10) for destination " << i + 1 << ": ";
+        std::cin >> destinations[i].name >> destinations[i].proximity >> destinations[i].importance;
+    }
+
+    // Sort destinations based on importance and proximity
+    std::sort(destinations.begin(), destinations.end(), compareDestinations);
+
+    // Display sorted destinations
+    std::cout << "\nRecommended order of visit:\n";
+    std::cout << std::left << std::setw(15) << "Destination" 
+              << std::setw(15) << "Proximity (km)" 
+              << std::setw(15) << "Importance" << "\n";
+    std::cout << std::string(45, '-') << "\n";
+
+    for (const auto& dest : destinations) {
+        std::cout << std::left << std::setw(15) << dest.name 
+                  << std::setw(15) << dest.proximity 
+                  << std::setw(15) << dest.importance << "\n";
+    }
+
+    return 0;
+}
