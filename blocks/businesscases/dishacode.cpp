@@ -1,79 +1,5 @@
 #include <iostream>
 #include <vector>
-#include <unordered_map>
-#include <climits>
-
-struct Edge {
-    int source;
-    int destination;
-    int weight; // Weight represents risk level or travel time
-};
-
-void bellmanFord(int vertices, int edges, int start, const std::vector<Edge>& graph, const std::unordered_map<int, std::string>& location_names) {
-    std::vector<int> distance(vertices, INT_MAX);
-    distance[start] = 0;
-
-    // Relax all edges (vertices - 1) times
-    for (int i = 0; i < vertices - 1; ++i) {
-        for (const auto& edge : graph) {
-            if (distance[edge.source] != INT_MAX && distance[edge.source] + edge.weight < distance[edge.destination]) {
-                distance[edge.destination] = distance[edge.source] + edge.weight;
-            }
-        }
-    }
-
-    // Check for negative weight cycles
-    for (const auto& edge : graph) {
-        if (distance[edge.source] != INT_MAX && distance[edge.source] + edge.weight < distance[edge.destination]) {
-            std::cout << "Graph contains a negative weight cycle.\n";
-            return;
-        }
-    }
-
-    // Display results
-    std::cout << "\nSafest travel distances from location " << location_names.at(start) << ":\n";
-    for (int i = 0; i < vertices; ++i) {
-        if (distance[i] == INT_MAX) {
-            std::cout << location_names.at(i) << ": Unreachable\n";
-        } else {
-            std::cout << location_names.at(i) << ": " << distance[i] << " risk level\n";
-        }
-    }
-}
-
-int main() {
-    const int vertices = 5;
-    const int edges = 6;
-
-    std::vector<Edge> graph = {
-        {0, 1, 2},
-        {0, 2, 4},
-        {1, 3, 1},
-        {1, 4, 7},
-        {2, 3, 3},
-        {3, 4, 1}
-    };
-
-    std::unordered_map<int, std::string> location_names = {
-        {0, "Park"},
-        {1, "Museum"},
-        {2, "Hotel"},
-        {3, "Beach"},
-        {4, "Market"}
-    };
-
-    // Add bidirectional edges to the graph
-    for (int i = 0; i < edges; ++i) {
-        graph.push_back({graph[i].destination, graph[i].source, graph[i].weight});
-    }
-
-    int start = 0; // Starting location is Park
-    bellmanFord(vertices, edges, start, graph, location_names);
-
-    return 0;
-}
-#include <iostream>
-#include <vector>
 #include <iomanip> // For formatted output
 
 // Structure to represent a destination
@@ -174,6 +100,80 @@ int main() {
                   << std::setw(15) << dest.proximity
                   << std::setw(10) << dest.importance << "\n";
     }
+
+    return 0;
+}
+#include <iostream>
+#include <vector>
+#include <unordered_map>
+#include <climits>
+
+struct Edge {
+    int source;
+    int destination;
+    int weight; // Weight represents risk level or travel time
+};
+
+void bellmanFord(int vertices, int edges, int start, const std::vector<Edge>& graph, const std::unordered_map<int, std::string>& location_names) {
+    std::vector<int> distance(vertices, INT_MAX);
+    distance[start] = 0;
+
+    // Relax all edges (vertices - 1) times
+    for (int i = 0; i < vertices - 1; ++i) {
+        for (const auto& edge : graph) {
+            if (distance[edge.source] != INT_MAX && distance[edge.source] + edge.weight < distance[edge.destination]) {
+                distance[edge.destination] = distance[edge.source] + edge.weight;
+            }
+        }
+    }
+
+    // Check for negative weight cycles
+    for (const auto& edge : graph) {
+        if (distance[edge.source] != INT_MAX && distance[edge.source] + edge.weight < distance[edge.destination]) {
+            std::cout << "Graph contains a negative weight cycle.\n";
+            return;
+        }
+    }
+
+    // Display results
+    std::cout << "\nSafest travel distances from location " << location_names.at(start) << ":\n";
+    for (int i = 0; i < vertices; ++i) {
+        if (distance[i] == INT_MAX) {
+            std::cout << location_names.at(i) << ": Unreachable\n";
+        } else {
+            std::cout << location_names.at(i) << ": " << distance[i] << " risk level\n";
+        }
+    }
+}
+
+int main() {
+    const int vertices = 5;
+    const int edges = 6;
+
+    std::vector<Edge> graph = {
+        {0, 1, 2},
+        {0, 2, 4},
+        {1, 3, 1},
+        {1, 4, 7},
+        {2, 3, 3},
+        {3, 4, 1}
+    };
+
+    std::unordered_map<int, std::string> location_names = {
+        {0, "Park"},
+        {1, "Museum"},
+        {2, "Hotel"},
+        {3, "Beach"},
+        {4, "Market"}
+    };
+
+    // Add bidirectional edges to the graph
+    for (int i = 0; i < edges; ++i) {
+        graph.push_back({graph[i].destination, graph[i].source, graph[i].weight});
+    }
+
+    int start = 0; // Starting location is Park
+    bellmanFord(vertices, edges, start, graph, location_names);
 
     return 0;
 }
