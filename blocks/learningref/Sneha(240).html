@@ -4,9 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Data Structures and Algorithms Summary</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Montserrat', sans-serif;
       line-height: 1.8;
       background-color: #f0f8ff;
       color: #2f2f2f;
@@ -23,15 +24,17 @@
       color: #ffffff;
       background-color: #4b0082;
       padding: 10px;
-      border-radius: 5px;
+      border-radius: 10px;
+      font-family: 'Merriweather', serif;
     }
     h2 {
       margin-top: 30px;
       border-bottom: 2px solid #8a2be2;
       padding: 10px;
       background-color: #dcdcdc;
-      border-radius: 4px;
+      border-radius: 8px;
       color: #4b0082;
+      font-family: 'Merriweather', serif;
     }
     h3 {
       margin-top: 20px;
@@ -62,7 +65,7 @@
       padding: 20px;
       background-color: #ffffff;
       border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     }
     footer {
       text-align: center;
@@ -73,14 +76,14 @@
     .navbar {
       position: sticky;
       top: 0;
-      background-color: #2e8b57;
+      background-color: #4CAF50; /* Green background */
       width: 100%;
       z-index: 1000;
       padding: 0.5rem 1rem;
       box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
       display: flex;
-      border-radius: 10px;
       justify-content: space-between;
+      border-radius: 10px;
     }
     .nav-list {
       list-style: none;
@@ -92,21 +95,20 @@
     }
     .nav-list li {
       margin: 0;
-      color: #ffffff;
     }
     .nav-list a {
       text-decoration: none;
-      color: #fb5235;
-      align-content: center;
+      color: #ffffff;
       padding: 1rem 1rem;
       transition: background-color 0.3s ease;
+      border-radius: 4px;
+      font-weight: 600;
     }
     .nav-list a:hover {
       transform: scale(1.02);
-      background-color: #ff6347;
+      background-color: #3e8e41;
       box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
       transition: transform 0.2s, box-shadow 0.2s;
-      border-radius: 4px;
     }
     .content {
       padding: 2rem;
@@ -131,9 +133,9 @@
 <body>
   <nav class="navbar">
     <ul class="nav-list">
-      <li><a style="color:rgb(255, 255, 255)" href="/PortfolioDemo.github.io/blocks/home/home.html">Home</a></li>
-      <li><a style="color:rgb(255, 255, 255)" href="/PortfolioDemo.github.io/index.html">PROJECT OVERVIEW</a></li>
-      <li><a style="color:rgb(253, 251, 251)" href="/PortfolioDemo.github.io/blocks/learningref/teamlearning.html">Learning Reflections</a></li>
+      <li><a href="/PortfolioDemo.github.io/blocks/home/home.html">Home</a></li>
+      <li><a href="/PortfolioDemo.github.io/index.html">PROJECT OVERVIEW</a></li>
+      <li><a href="/PortfolioDemo.github.io/blocks/learningref/teamlearning.html">Learning Reflections</a></li>
     </ul>
   </nav>
   <section>
@@ -141,9 +143,9 @@
       <div class="container">
         <h2>1. What are the kinds of problems we see in nature?</h2> 
             <ul> 
-              <li><strong>Iteration:</strong>Solving problems through repeated steps (e.g., calculating compound interest, searching through an array).</li>
-              <li><strong>Recursion:</strong>Solving a problem by dividing it into smaller subproblems (e.g., Tower of Hanoi, Fibonacci sequence).</li> 
-              <li><strong>Backtracking:</strong>Exploring all possible solutions and discarding invalid ones (e.g., N-Queens problem, maze-solving).</li>
+              <li><strong>Iteration:</strong> Solving problems through repeated steps (e.g., calculating compound interest, searching through an array).</li>
+              <li><strong>Recursion:</strong> Solving a problem by dividing it into smaller subproblems (e.g., Tower of Hanoi, Fibonacci sequence).</li> 
+              <li><strong>Backtracking:</strong> Exploring all possible solutions and discarding invalid ones (e.g., N-Queens problem, maze-solving).</li>
            </ul>
            <p>These approaches help solve real-world problems in physics, biology, and computer science.</p>
            </ul> 
@@ -155,11 +157,12 @@
            <li><strong>Space Efficiency:</strong> Refers to the memory an algorithm uses during execution. Efficient space usage is important for handling large datasets on devices with limited memory.</li> 
            <li><strong>Time Efficiency:</strong> Refers to the time an algorithm takes to complete. Faster algorithms are necessary for real-time applications.</li> 
        </ul> 
-        <p>Algorithm complexity is measured using Big-O notation:</p> <ul> <li><strong>O(1):</strong> Constant time (fastest).</li>
-         <ul>
-            <li><strong>O(log n):</strong> Logarithmic growth.</li>
-            <li><strong>O(n):</strong> Linear growth.</li>
-            <li><strong>O(n²):</strong> Quadratic growth (slower).</li>
+        <p>Algorithm complexity is measured using Big-O notation:</p> 
+        <ul> 
+           <li><strong>O(1):</strong> Constant time (fastest).</li>
+           <li><strong>O(log n):</strong> Logarithmic growth.</li>
+           <li><strong>O(n):</strong> Linear growth.</li>
+           <li><strong>O(n²):</strong> Quadratic growth (slower).</li>
         </ul> 
       </div> 
     <div class="container">
@@ -168,7 +171,7 @@
       <ul> 
           <li><strong>Divide and Conquer:</strong> Break problems into smaller, manageable subproblems (e.g., MergeSort, QuickSort).</li> 
           <li><strong>Greedy Algorithms:</strong> Make the best local choice at each step (e.g., Kruskal’s MST algorithm).</li> 
-        <li><strong>Dynamic Programming:</strong> Store solutions to overlapping subproblems (e.g., Fibonacci numbers, longest common subsequence).</li> 
+          <li><strong>Dynamic Programming:</strong> Store solutions to overlapping subproblems (e.g., Fibonacci numbers, longest common subsequence).</li> 
       </ul> 
       <p>These principles improve problem-solving efficiency and applicability to real-world scenarios.</p> 
     </div> 
@@ -179,7 +182,8 @@
            <li><strong>Binary Search Trees (BST):</strong> Efficient for searching and sorting.</li>
            <li><strong>AVL Trees:</strong> Self-balancing BST for maintaining logarithmic height.</li> 
            <li><strong>Red-Black Trees:</strong> Ensure balanced trees for faster insertions/deletions.</li> 
-           <li><strong>Heaps:</strong> Used for priority queues.</li> <li><strong>Tries:</strong> Efficient for prefix-based searching (e.g., autocomplete).</li>
+           <li><strong>Heaps:</strong> Used for priority queues.</li> 
+           <li><strong>Tries:</strong> Efficient for prefix-based searching (e.g., autocomplete).</li>
       </ul> 
       <p>These structures optimize memory usage and reduce time complexity.</p> 
     </div> 
@@ -193,90 +197,6 @@
       <p>Applications include real-time analytics, gaming, and financial systems.</p>
     </div>
 
-    <div class="container">
-        <h2>6. Differentiate between tree and graphs and their traversals. The applications of each</h2>
-        <p>Trees and graphs differ fundamentally:</p>
-        <ul>
-            <li><strong>Trees:</strong> Acyclic, hierarchical structures (e.g., family trees).</li>
-            <li><strong>Graphs:</strong> Generalized structures allowing cycles (e.g., road networks).</li>
-        </ul>
-        <p>Traversals include:</p>
-        <ul>
-            <li><strong>Tree Traversals:</strong> Preorder, Inorder, Postorder.</li>
-            <li><strong>Graph Traversals:</strong> BFS and DFS.</li>
-        </ul>
-        <p>Applications range from pathfinding to data organization.</p>
-
-    </div> 
-     <div class="container">
-        <h2>7.Deliberate on sorting and searching algorithms, the technique behind each and their connection to the real world</h2>
-        
-            <p>Sorting algorithms (e.g., QuickSort, MergeSort) and searching algorithms (e.g., Binary Search) are vital for:</p>
-        <ul>
-            <li>Organizing large datasets.</li>
-            <li>Improving data retrieval times in databases and search engines.</li>
-        </ul>
-
-       </div>
-       <div class="container">
-        <h2>8..Discuss the importance of graph algorithms with respect to spanning trees and shortest path.</h2>
-           <p>Graph algorithms like Dijkstra's and Kruskal's are essential for:</p>
-        <ul>
-            <li>Finding shortest paths in networks.</li>
-            <li>Constructing minimum spanning trees for cost optimization.</li>
-        </ul>
-        <p>Applications include network routing, logistics, and game development.</p>
-
-
-       </div>
-       <div class="container">
-       <h2>9.Discuss about the different studied algorithm design techniques.</h2>
-     <p>Studied algorithm design techniques include:</p>
-        <ul>
-            <li><strong>Divide and Conquer:</strong> Break problems into smaller pieces (e.g., MergeSort).</li>
-            <li><strong>Dynamic Programming:</strong> Solve overlapping subproblems using memoization (e.g., knapsack problem).</li>
-            <li><strong>Greedy Algorithms:</strong> Make locally optimal choices to achieve a global optimum (e.g., Huffman coding).</li>
-        </ul>
-        <p>These techniques address diverse real-world challenges efficiently.</p>
+    <[_{{{CITATION{{{_1{](https://github.com/theresia-alfareja/klinikmagang/tree/76aed476f7260c95ce35a5460fa79498cb876889/akun_pribadi.php)
             
-           <div class="container">
-        <h1>Algorithm Learning Reflections</h1>
-     
-
-<h2>1. How do you determine the most efficient approach when solving a complex problem?</h2>
-<p>I start by examining the problem's constraints, considering the required performance, and evaluating possible trade-offs. I then assess whether approaches like divide-and-conquer, dynamic programming, or greedy methods fit the problem’s needs.</p>
-
-<h2>2. How do you balance multiple conflicting constraints in a design?</h2>
-<p>My approach is to rank constraints based on their impact on the overall solution. For instance, I may prioritize minimizing time complexity in real-time systems while optimizing memory usage for resource-constrained environments.</p>
-
-<h2>3. What criteria do you use to evaluate the effectiveness of a solution?</h2>
-<p>Effectiveness is measured by factors such as correctness, efficiency, scalability, and simplicity. I also consider the algorithm’s ability to handle edge cases and robustness against invalid inputs.</p>
-
-<h2>4. How can you adapt an existing solution to address a new or unforeseen challenge?</h2>
-<p>By modularizing and generalizing parts of the algorithm, I can reapply them to new problems. For example, I could adapt Dijkstra's algorithm to handle negative edge weights by switching to the Bellman-Ford algorithm.</p>
-
-<h2>5. What strategies do you use to identify patterns or structures in datasets or problems?</h2>
-<p>I analyze the problem for repeating patterns, hierarchical relationships, or connections among data elements. This helps me select the most appropriate algorithm, such as dynamic programming or graph traversal techniques.</p>
-
-<h2>6. How do you decide when to prioritize simplicity over optimization in a solution?</h2>
-<p>I favor simplicity when the problem size is manageable or when optimization doesn't significantly improve performance. As systems grow larger, however, optimization becomes more important.</p>
-
-<h2>7. How does breaking down a problem into smaller components help solve it more effectively?</h2>
-<p>Dividing a problem into manageable components makes it easier to implement and debug. Techniques like divide-and-conquer take advantage of this approach to solve complex problems more efficiently.</p>
-
-<h2>8. What trade-offs do you consider when solving problems?</h2>
-<p>I weigh the trade-offs between time complexity, space usage, simplicity, and maintainability. For example, choosing a hash table for its O(1) access time might increase memory usage.</p>
-
-<h2>9. How do you identify and address potential limitations or weaknesses in a proposed solution?</h2>
-<p>I detect weaknesses through edge case testing, complexity analysis, and code reviews. To improve the solution, I either refine the existing approach or explore alternative methods.</p>
-
-<h2>10. How does applying knowledge from one context help solve a problem in another context?</h2>
-<p>Skills learned in one domain, such as dynamic programming in optimization problems, can be transferred to other areas like machine learning or game theory, providing effective solutions to real-world problems.</p>
-
-<h2>11. How do you decide when to innovate versus relying on tried-and-tested solutions?</h2>
-<p>When established solutions fulfill the problem’s requirements, I stick with them. However, if the challenge is unique or particularly complex, I consider innovation to find more efficient or novel solutions.</p>
-
-
-<button onclick="window.history.back();" style="background-color: #0bb12f; color: rgb(241, 233, 233); border: none; padding: 10px 20px; font-size: 1rem; cursor: pointer; border-radius: 5px; margin-bottom: 20px;">Back</button>       
-</body> 
-</html>
+         <div class="container"> <h1>Algorithm Learning Reflections</h1> <h2>1. How do you determine the most efficient approach when solving a complex problem?</h2> <p>I start by examining the problem's constraints, considering the required performance, and evaluating possible trade-offs. I then assess whether approaches like divide-and-conquer, dynamic programming, or greedy methods fit the problem’s needs.</p> <h2>2. How do you balance multiple conflicting constraints in a design?</h2> <p>My approach is to rank constraints based on their impact on the overall solution. For instance, I may prioritize minimizing time complexity in real-time systems while optimizing memory usage for resource-constrained environments.</p> <h2>3. What criteria do you use to evaluate the effectiveness of a solution?</h2> <p>Effectiveness is measured by factors such as correctness, efficiency, scalability, and simplicity. I also consider the algorithm’s ability to handle edge cases and robustness against invalid inputs.</p> <h2>4. How can you adapt an existing solution to address a new or unforeseen challenge?</h2> <p>By modularizing and generalizing parts of the algorithm, I can reapply them to new problems. For example, I could adapt Dijkstra's algorithm to handle negative edge weights by switching to the Bellman-Ford algorithm.</p> <h2>5. What strategies do you use to identify patterns or structures in datasets or problems?</h2> <p>I analyze the problem for repeating patterns, hierarchical relationships, or connections among data elements. This helps me select the most appropriate algorithm, such as dynamic programming or graph traversal techniques.</p> <h2>6. How do you decide when to prioritize simplicity over optimization in a solution?</h2> <p>I favor simplicity when the problem size is manageable or when optimization doesn't significantly improve performance. As systems grow larger, however, optimization becomes more important.</p> <h2>7. How does breaking down a problem into smaller components help solve it more effectively?</h2> <p>Dividing a problem into manageable components makes it easier to implement and debug. Techniques like divide-and-conquer take advantage of this approach to solve complex problems more efficiently.</p> <h2>8. What trade-offs do you consider when solving problems?</h2> <p>I weigh the trade-offs between time complexity, space usage, simplicity, and maintainability. For example, choosing a hash table for its O(1) access time might increase memory usage.</p> <h2>9. How do you identify and address potential limitations or weaknesses in a proposed solution?</h2> <p>I detect weaknesses through edge case testing, complexity analysis, and code reviews. To improve the solution, I either refine the existing approach or explore alternative methods.</p> <h2>10. How does applying knowledge from one context help solve a problem in another context?</h2> <p>Skills learned in one domain, such as dynamic programming in optimization problems, can be transferred to other areas like machine learning or game theory, providing effective solutions to real-world problems.</p> <h2>11. How do you decide when to innovate versus relying on tried-and-tested solutions?</h2> <p>When established solutions fulfill the problem’s requirements, I stick with them. However, if the challenge is unique or particularly complex, I consider innovation to find more efficient or novel solutions.</p> <button onclick="window.history.back();">Back</button> </div> </body> </html>
