@@ -5,51 +5,151 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portfolio</title>
-  <link rel="stylesheet" href="style1.css">
-  <link href="https://github.com/snehalb2005/sneha.github.io/blob/5a07d010563b5c04a94c1813d590ba06d8861984/blocks/home/style1.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* General Styles */
+    body {
+      font-family: 'Montserrat', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f4f8; /* Soft light blue background */
+      color: #333;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 20px;
+      background: #ffffff; /* White background for content */
+      box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+      border-radius: 12px;
+    }
+
+    h1.main {
+      text-align: center;
+      color: #ffffff;
+      background-color: #00796b; /* Teal background for the main heading */
+      border-radius: 8px;
+      margin-bottom: 30px;
+      padding: 15px;
+      font-family: 'Merriweather', serif;
+    }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      background-color: #00796b; /* Teal background for navbar */
+      width: 100%;
+      z-index: 1000;
+      padding: 1rem 1rem;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .nav-list {
+      list-style: none;
+      display: flex;
+      justify-content: space-around;
+      align-content: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-list li {
+      margin: 0;
+      color: #ffffff;
+    }
+
+    .nav-list a {
+      text-decoration: none;
+      color: #ffffff;
+      padding: 1rem 1rem;
+      transition: background-color 0.3s ease;
+    }
+
+    .nav-list a:hover {
+      background-color: #004d40; /* Slightly darker teal on hover */
+      transform: scale(1.02);
+      box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+      transition: transform 0.2s, box-shadow 0.2s;
+      border-radius: 4px;
+    }
+
+    .description {
+      padding: 2rem 0;
+      text-align: center;
+    }
+
+    .link-section {
+      margin-bottom: 20px;
+    }
+
+    .custom-link {
+      text-decoration: none;
+      color: #ffffff;
+      background-color: #ff7043; /* Coral background */
+      padding: 10px 20px;
+      border-radius: 8px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .custom-link:hover {
+      background-color: #f4511e; /* Darker coral on hover */
+      transform: scale(1.05);
+    }
+
+    .topic {
+      font-family: 'Merriweather', serif;
+      padding: 20px;
+      background-color: #f9f9f9; /* Light grey background */
+      border-radius: 12px;
+      margin: 20px 0;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      font-family: 'Montserrat', sans-serif;
+      color: #00796b; /* Teal color for headings */
+      margin-bottom: 20px;
+    }
+
+    dl {
+      margin: 0;
+      padding: 0;
+    }
+
+    dt {
+      font-weight: 600;
+      margin-top: 10px;
+      color: #2c3e50;
+    }
+
+    dd {
+      margin: 0 0 10px 0;
+      color: #34495e;
+    }
+  </style>
 </head>
- 
 
 <body>
   <nav class="navbar">
     <ul class="nav-list">
-      <li><a style="color:rgb(255, 255, 255)"  href="blocks/home/home.html">Home</a></li>
-      <li><a style="color:rgb(255, 255, 255)"  href="/sneha.github.io/index.html">Project Introduction</a></li>
-     
+      <li><a href="blocks/home/home.html">Home</a></li>
+      <li><a href="/sneha.github.io/index.html">Project Introduction</a></li>
     </ul>
   </nav>
-</body>
-       <section class="description">
-            <div class="link-section">
-                <a class="custom-link" href="/sneha.github.io/Courseintroduction.html">Click Here to see the course introduction</a>
-            </div>
-        </section>    
-          <div class="topic" style="font-family: serif;" >
-          <h2 style="font-family: 'Roboto', serif;">Portfolio Topic</h2>
-          To create a city design and solve the real world problems
-          <dl>
-            <dt>Course Name</dt>
-            <dd>Design and analysis of Algorithms</dd>
 
-            <dt>Course Code</dt>
-            <dd>24ECAP205</dd>
-            <dt>Course Instructor</dt>
-            <dd>Ms.Vijaylaxmi V S </dd>
+  <div class="description">
+    <div class="link-section">
+      <a class="custom-link" href="/sneha.github.io/Courseintroduction.html">Click Here to see the course introduction</a>
+    </div>
+  </div>
 
-            <dt>University</dt>
-            <dd>KLE Technological University</dd>
-
-            <dt>Portfolio Topic/Domain</dt>
-            <dd>City design</dd>
-
-          </dl>
-          
-      </div>
-        </li>
-      
-      </ul>
-  </section>
-  </main>
-</body>
-
-</html>
+  <div class="container">
+    <div class="topic">
+      <h2>Portfolio Topic</h2>
+      <p>To create a city design and solve the real world problems</p>
+      <dl>
+        <dt>Course Name</dt>
+        <dd>Design and Analysis
