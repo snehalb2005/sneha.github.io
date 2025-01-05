@@ -1,232 +1,188 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Business Cases Aligned with SDGs</title>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    /* General Styles */
-    body {
-      font-family: 'Open Sans', sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #e5f1f6; /* Soft light blue background */
-      color: #333;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #e3f2fd; /* Light blue */
+            color: #2c3e50; /* Dark blue-gray for text */
+            margin: 0;
+            padding: 0;
+        }
 
-    .container {
-      max-width: 900px;
-      margin: 20px auto;
-      padding: 20px;
-      background: #ffffff; /* White background for content */
-      box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
-      border-radius: 12px;
-    }
+        .navbar {
+            background-color: #2980b9; /* Blue */
+            padding: 1rem;
+        }
 
-    h1.main {
-      text-align: center;
-      color: #ffffff;
-      background-color: #00897b; /* Teal background for the main heading */
-      border-radius: 8px;
-      margin-bottom: 30px;
-      padding: 15px;
-      font-family: 'Merriweather', serif;
-    }
+        .nav-list {
+            list-style: none;
+            display: flex;
+            justify-content: flex-start;
+            gap: 1rem;
+            margin: 0;
+            padding: 0;
+        }
 
-    .section {
-      margin-bottom: 40px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
+        .nav-list li a {
+            text-decoration: none;
+            color: #ecf0f1; /* Light gray text */
+            font-weight: 600;
+        }
 
-    .section:hover {
-      transform: scale(1.03);
-      box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
-    }
+        .nav-list li a:hover {
+            color: #f39c12; /* Yellow for hover */
+        }
 
-    .section h2 {
-      text-align: center;
-      color: #2c3e50;
-      margin-bottom: 20px;
-      text-transform: uppercase;
-      font-weight: 700;
-      font-family: 'Merriweather', serif;
-    }
+        section h2 {
+            color: #2980b9; /* Blue for headings */
+            text-align: center;
+            margin: 1rem 0;
+        }
 
-    .strategy {
-      margin-bottom: 20px;
-      padding: 20px;
-      border: 1px solid #ccc;
-      border-radius: 12px;
-      background-color: #f7f7f7; /* Light grey background */
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
+        section ul {
+            padding: 1rem 2rem;
+            background-color: #ffffff; /* White background for list */
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
 
-    .strategy:hover {
-      transform: scale(1.02);
-      box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.1);
-    }
+        section ul li {
+            margin-bottom: 0.5rem;
+        }
 
-    .strategy h3 {
-      font-size: 22px;
-      color: #00574b; /* Dark teal color for strategy headings */
-      margin-bottom: 10px;
-      font-weight: 600;
-    }
+        section ul li strong {
+            color: #f39c12; /* Yellow for strong text */
+        }
 
-    .strategy p {
-      line-height: 1.6;
-      margin: 5px 0;
-    }
+        .custom-link {
+            color: #2980b9; /* Blue */
+            text-decoration: none;
+            font-weight: bold;
+        }
 
-    .strategy p strong {
-      color: #2c3e50;
-    }
+        .custom-link:hover {
+            color: #f39c12; /* Yellow hover */
+        }
 
-    /* Section-Specific Styles */
-    .industrial .strategy {
-      background-color: #e1f5fe; /* Light cyan for industrial section */
-    }
+        blockquote {
+            font-style: italic;
+            color: #2980b9; /* Blue */
+            border-left: 4px solid #f39c12; /* Yellow border */
+            margin: 2rem;
+            padding-left: 1rem;
+        }
 
-    .environmental .strategy {
-      background-color: #c8e6c9; /* Light green for environmental section */
-    }
+        .profile-pic {
+            display: block;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 1rem auto;
+            border: 4px solid #f39c12; /* Yellow border for image */
+        }
 
-    .education .strategy {
-      background-color: #fff9c4; /* Light yellow for education section */
-    }
+        .name {
+            text-align: center;
+            color: #2980b9; /* Blue for name */
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
 
-    .industrial h2 {
-      color: #0288d1; /* Blue color for industrial heading */
-    }
+        section p {
+            text-align: center;
+            margin: 0.5rem 0;
+            color: #333; /* Standard text color */
+        }
 
-    .environmental h2 {
-      color: #388e3c; /* Green color for environmental heading */
-    }
-
-    .education h2 {
-      color: #fbc02d; /* Yellow color for education heading */
-    }
-
-    .navbar {
-      position: sticky;
-      top: 0;
-      background-color: #00897b; /* Teal background for navbar */
-      width: 100%;
-      z-index: 1000;
-      padding: 1rem 1rem;
-      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-      display: flex;
-      justify-content: space-between;
-    }
-
-    .nav-list {
-      list-style: none;
-      display: flex;
-      justify-content: space-around;
-      align-content: center;
-      margin: 0;
-      padding: 0;
-    }
-
-    .nav-list li {
-      margin: 0;
-      color: #ffffff;
-    }
-
-    .nav-list a {
-      text-decoration: none;
-      color: #ffffff;
-      padding: 1rem 1rem;
-      transition: background-color 0.3s ease;
-    }
-
-    .nav-list a:hover {
-      background-color: #00695c; /* Slightly darker teal on hover */
-      transform: scale(1.02);
-      box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
-      transition: transform 0.2s, box-shadow 0.2s;
-      border-radius: 4px;
-    }
-
-    h2.code {
-      font-family: 'Merriweather', serif;
-      background-color: #ff7043; /* Coral background for code section */
-      text-align: center;
-      font-style: oblique;
-      border-radius: 8px;
-      display: inline-flex;
-      padding: 10px 20px;
-    }
-
-    h2.code:hover {
-      background-color: #f4511e; /* Darker coral on hover */
-      color: #ffffff;
-      transform: scale(1.05);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
-
-    .content {
-      padding: 2rem;
-      font-size: 1.2rem;
-      line-height: 1.6;
-    }
-
-    .center-link {
-      text-align: center;
-      margin: 1rem 0;
-    }
-
-    .code {
-      color: #ffffff; /* White color for better visibility */
-      font-weight: bold;
-      text-decoration: none;
-      padding: 10px 20px;
-      background-color: #ff7043; /* Coral background for better contrast */
-      border-radius: 8px;
-      transition: background-color 0.3s ease, transform 0.3s ease;
-    }
-
-    .code:hover {
-      background-color: #f4511e; /* Darker coral on hover */
-      transform: scale(1.05);
-    }
-  </style>
+        .center-link {
+            text-align: center;
+            margin: 1rem 0;
+        }
+    </style>
 </head>
 <body>
-  <nav class="navbar">
-    <ul class="nav-list">
-      <li><a href="/sneha.github.io/blocks/home/home.html">Home</a></li>
-      <li><a href="/sneha.github.io/index.html">Project Introduction</a></li>
-      <li><a href="/sneha.github.io/blocks/learningref/teamlearning.html">Learning Reflections</a></li>
-    </ul>
-  </nav>
+    <nav class="navbar">
+        <ul class="nav-list">
+            <li><a href="/sneha.github.io/blocks/home/home.html">Home</a></li>
+            <li><a href="/sneha.github.io/introduction.html">Project Introduction</a></li>
+            <li><a href="/sneha.github.io/blocks/learningref/teamlearning.html">Learning Reflections</a></li>
+        </ul>
+    </nav>
 
-  <div class="container">
-    <button onclick="window.history.back();" style="background-color: #00897b; color: white; border: none; padding: 10px 20px; font-size: 1rem; cursor: pointer; border-radius: 8px; margin-bottom: 20px;">Back</button>
-    <h1 class="main">Business Cases with SDGs</h1>
+    <section>
+        <h2>City Design</h2>
+        <ul>
+            <li><strong>Name of the city:</strong> <span>"HAMSAGARH"</span></li>
+            <li>Our city plan for HAMSAGARH, situated in RAJKOT district in GUJART, features a well-rounded and sustainable urban design focusing on infrastructure, public services,monument preservation and environmental conservation.</li>
+            <li>
+                <center>
+                    <img src="https://raw.githubusercontent.com/snehalb2005/sneha.github.io/main/images/City.jpeg" alt="City Plan Image" width="80%">
+                </center>
+            </li>
+        </ul>
+        <section class="description">
+            <div class="link-section">
+                <a class="custom-link" href="/sneha.github.io/introduction.html">Click Here to see the course project introduction</a>
+            </div>
+        </section>
+        <section class="description">
+            <div class="link-section">
+                <a class="custom-link" href="/sneha.github.io/blocks/businesscases/business.html">Click Here to see the business cases</a>
+            </div>
+        </section>
+        
+        <blockquote>“The only way to do great work is to love what you do.” – Steve Jobs</blockquote>
+    </section>
+    <section>
+        <div>
+            <div>
+                <img src="https://raw.githubusercontent.com/snehalb2005/sneha.github.io/main/images/sneha.jpeg"  class="profile-pic">
+                <p class="name">Sneha L Bagalkot</p>
+                <p>USN: 01FE23BCS174</p>
+                <p>ROLL NO: 240</p> 
+            </div>
+        </div>
+    </section>
 
-    <div class="Overcrowding of tourist places of attraction">
-      <h2>Overcrowding of tourist places of attraction</h2>
-      <div class="strategy">
-        <h3>SDG Target 8</h3>
-        <p><strong>Focus:</strong> Sustainable Tourism and Responsible Consumption</p>
-        <p><strong>SDG Indicator 8.9.1:</strong> Tourism direct GDP as a proportion of total GDP and in growth rate.</p>
-      </div>
-    </div>
+    
+     <section>
+        <div>
+            <h2 id="meet">Meet My Team 🕵</h2>
+        </div>
+        <div class="team-container">
 
-    <div class="Inefficient Travel and Accommodation Bookings">
-      <h2>Inefficient Travel and Accommodation Bookings</h2>
-      <div class="strategy">
-        <h3>SDG Target 8</h3>
-        <p><strong>Focus:</strong> Sustainable Infrastructure Development</p>
-        <p><strong>SDG Indicator 8.2.1:</strong> Annual growth rate of real GDP per employed person.</p>
-      </div>
-    </div>
+            <div class="team-member">
+                <img src="https://raw.githubusercontent.com/snehalb2005/sneha.github.io/main/images/disha.jpeg" alt="Team Member 2" class="profile-pic">
+                <div class="member-info">
+                    <p class="name">Disha Sirsikar</p>
+                    <p>USN: 01FE23BCS187</p>
+                    <p>ROLL NO: 245</p>
+                </div>
+            </div>
 
-    <div class="center-link">
-      <a href="../businesscases/Snehacode.cpp" class="code">Click Here for Code Implementation</a>
-    </div>
-  </div>
+            <div class="team-member">
+                <img src="https://raw.githubusercontent.com/snehalb2005/sneha.github.io/main/images/prateeksha.jpeg" alt="Team Member 3" class="profile-pic">
+                <div class="member-info">
+                    <p class="name">Prateeksha P Shet </p>
+                    <p>USN: 01FE23BCS177</p>
+                    <p>ROLL NO: 223</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2 style="color:rgb(34, 34, 211)">🌐 Find Me Online</h2>
+        <ul>
+            <li><a href="https://github.com/snehalb2005" target="_blank">GitHub</a></li>
+            <li><a href="https://linkedin.com/in/your-linkedin-profile" target="_blank">LinkedIn</a></li>
+        </ul>
+    </section>
 </body>
 </html>
