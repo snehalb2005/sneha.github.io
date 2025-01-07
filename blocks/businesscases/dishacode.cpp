@@ -1,179 +1,378 @@
+//case 5
+//difficulty in itinerary Planning
 #include <iostream>
+#include <unordered_map>
+#include <unordered_set>
 #include <vector>
-#include <iomanip> // For formatted output
+#include <string>
+#include <algorithm>
+using namespace std;
 
-// Structure to represent a destination
-struct Destination {
-    std::string name;
-    double proximity; // Distance from the starting point
-    int importance;   // Importance level (higher is better)
+// Trie Node Definition
+class TrieNode {
+public:
+    unordered_map<char, TrieNode*> children;
+    vector<pair<string, int>> suggestions; // Pair of suggestion and ranking
+    bool isEndOfWord;
+
+    TrieNode() : isEndOfWord(false) {}
 };
 
-// Comparator function to compare destinations
-bool compareDestinations(const Destination& a, const Destination& b) {
-    // Prioritize higher importance, then closer proximity
-    if (a.importance != b.importance)
-        return a.importance > b.importance;
-    return a.proximity < b.proximity;
-}
+// Trie Class Definition
+class Trie {
+private:
+    TrieNode* root;
 
-// Merge function
-void merge(std::vector<Destination>& destinations, int left, int mid, int right) {
-    int n1 = mid - left + 1; // Size of left subarray
-    int n2 = right - mid;    // Size of right subarray
-
-    std::vector<Destination> leftArray(n1);
-    std::vector<Destination> rightArray(n2);
-
-    // Copy data to temporary arrays
-    for (int i = 0; i < n1; ++i)
-        leftArray[i] = destinations[left + i];
-    for (int i = 0; i < n2; ++i)
-        rightArray[i] = destinations[mid + 1 + i];
-
-    int i = 0, j = 0, k = left;
-
-    // Merge the temporary arrays back into the original array
-    while (i < n1 && j < n2) {
-        if (compareDestinations(leftArray[i], rightArray[j])) {
-            destinations[k] = leftArray[i];
-            ++i;
-        } else {
-            destinations[k] = rightArray[j];
-            ++j;
-        }
-        ++k;
+public:
+    Trie() {
+        root = new TrieNode();
     }
 
-    // Copy the remaining elements, if any
+    // Insert a key with its suggestions and rankings into the Trie
+    void insert(const string& key, const vector<pair<string, int>>& suggestions) {
+        TrieNode* node = root;
+        for (char ch : key) {
+            if (node->children.find(ch) == node->children.end()) {
+                node->children[ch] = new TrieNode();
+            }
+            node = node->children[ch];
+        }
+        node->isEndOfWord = true;
+        node->suggestions = suggestions;
+    }
+
+    // Search for suggestions for a given prefix
+    vector<pair<string, int>> search(const string& prefix) {
+        TrieNode* node = root;
+        for (char ch : prefix) {
+            if (node->children.find(ch) == node->children.end()) {
+                return {}; // No suggestions found
+            }
+            node = node->children[ch];
+        }
+        return node->isEndOfWord ? node->suggestions : vector<pair<string, int>>{};
+    }
+
+    // Helper function to get all suggestions from the Trie
+    void getAllSuggestions(TrieNode* node, unordered_set<string>& allSuggestions, unordered_map<string, int>& allSuggestionsWithRanks) {
+        if (node->isEndOfWord) {
+            for (const auto& suggestion : node->suggestions) {
+                allSuggestions.insert(suggestion.first); // Insert only unique suggestions
+                allSuggestionsWithRanks[suggestion.first] = suggestion.second; // Store ranks as well
+            }
+        }
+        for (auto& child : node->children) {
+            getAllSuggestions(child.second, allSuggestions, allSuggestionsWithRanks);
+        }
+    }
+
+    // Public method to access root node for getting all suggestions
+    TrieNode* getRoot() {
+        return root;
+    }
+};
+
+// Merge Sort Function to rank suggestions
+void merge(vector<pair<string, int>>& arr, int left, int mid, int right) {
+    int n1 = mid - left + 1;
+    int n2 = right - mid;
+
+    vector<pair<string, int>> L(n1), R(n2);
+
+    for (int i = 0; i < n1; i++)
+        L[i] = arr[left + i];
+    for (int i = 0; i < n2; i++)
+        R[i] = arr[mid + 1 + i];
+
+    int i = 0, j = 0, k = left;
+    while (i < n1 && j < n2) {
+        if (L[i].second >= R[j].second) {
+            arr[k] = L[i];
+            i++;
+        } else {
+            arr[k] = R[j];
+            j++;
+        }
+        k++;
+    }
+
     while (i < n1) {
-        destinations[k] = leftArray[i];
-        ++i;
-        ++k;
+        arr[k] = L[i];
+        i++;
+        k++;
     }
 
     while (j < n2) {
-        destinations[k] = rightArray[j];
-        ++j;
-        ++k;
+        arr[k] = R[j];
+        j++;
+        k++;
     }
 }
 
-// Merge sort function
-void mergeSort(std::vector<Destination>& destinations, int left, int right) {
+void mergeSort(vector<pair<string, int>>& arr, int left, int right) {
     if (left < right) {
         int mid = left + (right - left) / 2;
-
-        // Sort the left and right halves
-        mergeSort(destinations, left, mid);
-        mergeSort(destinations, mid + 1, right);
-
-        // Merge the sorted halves
-        merge(destinations, left, mid, right);
+        mergeSort(arr, left, mid);
+        mergeSort(arr, mid + 1, right);
+        merge(arr, left, mid, right);
     }
 }
 
+// Main Function
 int main() {
-    // Predefined destinations
-    std::vector<Destination> destinations = {
-        {"Museum", 2.5, 8},
-        {"Park", 5.0, 6},
-        {"Market", 3.0, 7},
-        {"Lake", 4.5, 7},
-        {"Metro", 1.0, 5},
-        {"National Park", 6.0, 9},
-        {"Historical Monument", 4.0, 10}
-    };
+    Trie trie;
 
-    // Sort destinations using merge sort
-    mergeSort(destinations, 0, destinations.size() - 1);
+    // Insert categories with suggestions and their rankings
+    trie.insert("holy", {{"Ashrams", 5}, {"Temples", 3}});
+    trie.insert("historic", {{"Ashrams", 5}, {"Temples", 3}});
+    trie.insert("gallery", {{"Museums", 5}, {"Art Gallery", 2}});
+    trie.insert("exhibition", {{"Museums", 5}, {"Art Gallery", 2}});
+    trie.insert("nature", {{"National Parks", 5}, {"Lalpari Lake", 4}, {"Farms", 3}});
+    trie.insert("wildlife", {{"National Parks", 5}, {"Lalpari Lake", 4}, {"Farms", 3}});
+    trie.insert("shopping", {{"Malls", 4}, {"Main Market", 3}, {"Jewelry Streets", 2}});
+    trie.insert("kids", {{"Amusement Parks", 5}, {"Malls", 3}, {"Parks", 2}});
+    trie.insert("food", {{"Food Street", 4}, {"Restaurants", 3}});
+    trie.insert("adventure", {{"Amusement Parks", 5}, {"Boating", 4}});
 
-    // Display sorted destinations
-    std::cout << "\nRecommended order of visit:\n";
-    std::cout << std::left << std::setw(20) << "Destination"
-              << std::setw(15) << "Proximity (km)"
-              << std::setw(10) << "Importance" << "\n";
-    std::cout << std::string(45, '-') << "\n";
+    int choice;
+    do {
+        cout << "\nMenu:\n";
+        cout << "1. Search for suggestions by keyword\n";
+        cout << "2. Display all places with their ranks\n";
+        cout << "3. Exit\n";
+        cout << "Enter your choice: ";
+        cin >> choice;
 
-    for (const auto& dest : destinations) {
-        std::cout << std::left << std::setw(20) << dest.name
-                  << std::setw(15) << dest.proximity
-                  << std::setw(10) << dest.importance << "\n";
-    }
+        if (choice == 1) {
+            string input;
+            cout << "Enter a keyword to search for suggestions: ";
+            cin >> input;
+
+            vector<pair<string, int>> results = trie.search(input);
+            if (!results.empty()) {
+                // Sort suggestions using Merge Sort
+                mergeSort(results, 0, results.size() - 1);
+
+                cout << "Suggestions for \"" << input << "\" (ranked):\n";
+                for (const auto& suggestion : results) {
+                    cout << "- " << suggestion.first << " (Rank: " << suggestion.second << ")\n";
+                }
+            } else {
+                cout << "No suggestions found for \"" << input << "\".\n";
+            }
+        }
+        else if (choice == 2) {
+            unordered_set<string> uniqueSuggestions;
+            unordered_map<string, int> allSuggestionsWithRanks;
+            TrieNode* root = trie.getRoot(); // Access the root node
+            trie.getAllSuggestions(root, uniqueSuggestions, allSuggestionsWithRanks);  // Collect all unique suggestions and their ranks
+
+            if (!uniqueSuggestions.empty()) {
+                vector<pair<string, int>> allSuggestions;
+
+                // Collect the unique suggestions and their respective ranks
+                for (const string& place : uniqueSuggestions) {
+                    allSuggestions.push_back({place, allSuggestionsWithRanks[place]});
+                }
+
+                // Sort all suggestions using Merge Sort based on their rank
+                mergeSort(allSuggestions, 0, allSuggestions.size() - 1);
+
+                cout << "All places with their ranks (sorted):\n";
+                for (const auto& suggestion : allSuggestions) {
+                    cout << "- " << suggestion.first << " (Rank: " << suggestion.second << ")\n";
+                }
+            } else {
+                cout << "No suggestions found.\n";
+            }
+        }
+        else if (choice == 3) {
+            cout << "Exiting...\n";
+        }
+        else {
+            cout << "Invalid choice. Please try again.\n";
+        }
+
+    } while (choice != 3);
 
     return 0;
 }
+
+
+//Tourist Safety
 #include <iostream>
 #include <vector>
-#include <unordered_map>
 #include <climits>
+#include <unordered_map>
+#include <string>
+#include <algorithm>
 
+using namespace std;
+
+// Define a structure for an edge
 struct Edge {
-    int source;
-    int destination;
-    int weight; // Weight represents risk level or travel time
+    int u, v, weight;
 };
 
-void bellmanFord(int vertices, int edges, int start, const std::vector<Edge>& graph, const std::unordered_map<int, std::string>& location_names) {
-    std::vector<int> distance(vertices, INT_MAX);
-    distance[start] = 0;
+// Disjoint Set (Union-Find) to help Kruskal's algorithm
+struct DisjointSet {
+    vector<int> parent, rank;
 
-    // Relax all edges (vertices - 1) times
-    for (int i = 0; i < vertices - 1; ++i) {
-        for (const auto& edge : graph) {
-            if (distance[edge.source] != INT_MAX && distance[edge.source] + edge.weight < distance[edge.destination]) {
-                distance[edge.destination] = distance[edge.source] + edge.weight;
+    DisjointSet(int n) {
+        parent.resize(n);
+        rank.resize(n, 0);
+        for (int i = 0; i < n; i++) parent[i] = i;
+    }
+
+    int find(int x) {
+        if (parent[x] != x) {
+            parent[x] = find(parent[x]);
+        }
+        return parent[x];
+    }
+
+    void unionSets(int x, int y) {
+        int rootX = find(x);
+        int rootY = find(y);
+
+        if (rootX != rootY) {
+            if (rank[rootX] > rank[rootY]) {
+                parent[rootY] = rootX;
+            } else if (rank[rootX] < rank[rootY]) {
+                parent[rootX] = rootY;
+            } else {
+                parent[rootY] = rootX;
+                rank[rootX]++;
+            }
+        }
+    }
+};
+
+// Function for Kruskal's Algorithm to find MST
+vector<Edge> kruskal(int numPlaces, vector<Edge>& edges) {
+    DisjointSet ds(numPlaces);
+    vector<Edge> mst;
+
+    // Sort edges by weight (distance)
+    sort(edges.begin(), edges.end(), [](const Edge& e1, const Edge& e2) {
+        return e1.weight < e2.weight;
+    });
+
+    // Process edges and add to MST
+    for (const auto& edge : edges) {
+        int u = edge.u, v = edge.v, w = edge.weight;
+        if (ds.find(u) != ds.find(v)) {
+            mst.push_back(edge);
+            ds.unionSets(u, v);
+        }
+    }
+
+    return mst;
+}
+
+// Bellman-Ford algorithm to find the shortest path from the source
+vector<int> bellmanFord(int numPlaces, const vector<Edge>& edges, int source) {
+    vector<int> dist(numPlaces, INT_MAX);
+    dist[source] = 0;
+
+    // Relax all edges |V| - 1 times
+    for (int i = 0; i < numPlaces - 1; i++) {
+        for (const auto& edge : edges) {
+            if (dist[edge.u] != INT_MAX && dist[edge.u] + edge.weight < dist[edge.v]) {
+                dist[edge.v] = dist[edge.u] + edge.weight;
             }
         }
     }
 
-    // Check for negative weight cycles
-    for (const auto& edge : graph) {
-        if (distance[edge.source] != INT_MAX && distance[edge.source] + edge.weight < distance[edge.destination]) {
-            std::cout << "Graph contains a negative weight cycle.\n";
-            return;
-        }
-    }
+    return dist;
+}
 
-    // Display results
-    std::cout << "\nSafest travel distances from location " << location_names.at(start) << ":\n";
-    for (int i = 0; i < vertices; ++i) {
-        if (distance[i] == INT_MAX) {
-            std::cout << location_names.at(i) << ": Unreachable\n";
-        } else {
-            std::cout << location_names.at(i) << ": " << distance[i] << " risk level\n";
-        }
-    }
+// Function to assign risk level based on the distance
+string getRiskLevel(int distance) {
+    if (distance < 50)
+        return "Low Risk";
+    else if (distance < 100)
+        return "Moderate Risk";
+    else
+        return "High Risk";
 }
 
 int main() {
-    const int vertices = 5;
-    const int edges = 6;
-
-    std::vector<Edge> graph = {
-        {0, 1, 2},
-        {0, 2, 4},
-        {1, 3, 1},
-        {1, 4, 7},
-        {2, 3, 3},
-        {3, 4, 1}
+    vector<string> places = {
+        "Museums", "Amusement Parks", "National Parks", "Ashrams", "Malls", "Food Street",
+        "Boating", "Lalpari Lake", "Temples", "Restaurants", "Farms", "Main Market",
+        "Art Gallery", "Jewelry Streets", "Parks"
     };
 
-    std::unordered_map<int, std::string> location_names = {
-        {0, "Park"},
-        {1, "Museum"},
-        {2, "Hotel"},
-        {3, "Beach"},
-        {4, "Market"}
-    };
-
-    // Add bidirectional edges to the graph
-    for (int i = 0; i < edges; ++i) {
-        graph.push_back({graph[i].destination, graph[i].source, graph[i].weight});
+    unordered_map<string, int> placeIndex;
+    for (int i = 0; i < places.size(); i++) {
+        placeIndex[places[i]] = i;
     }
 
-    int start = 0; // Starting location is Park
-    bellmanFord(vertices, edges, start, graph, location_names);
+    int numPlaces = places.size();
+    vector<Edge> edges;
+
+    // Predefined distances (in kilometers) between places
+    edges = {
+        {0, 1, 20}, {1, 0, 20},  // Museums <-> Amusement Parks
+        {0, 2, 50}, {2, 0, 50},  // Museums <-> National Parks
+        {0, 3, 10}, {3, 0, 10},  // Museums <-> Ashrams
+        {0, 4, 30}, {4, 0, 30},  // Museums <-> Malls
+        {1, 5, 60}, {5, 1, 60},  // Amusement Parks <-> Food Street
+        {2, 6, 40}, {6, 2, 40},  // National Parks <-> Boating
+        {3, 7, 25}, {7, 3, 25},  // Ashrams <-> Lalpari Lake
+        {4, 8, 70}, {8, 4, 70},  // Malls <-> Temples
+        {5, 9, 90}, {9, 5, 90},  // Food Street <-> Restaurants
+        {6, 10, 110}, {10, 6, 110}, // Boating <-> Farms
+        {7, 11, 55}, {11, 7, 55}, // Lalpari Lake <-> Main Market
+        {8, 12, 45}, {12, 8, 45}, // Temples <-> Art Gallery
+        {9, 13, 80}, {13, 9, 80}, // Restaurants <-> Jewelry Streets
+        {10, 14, 35}, {14, 10, 35}, // Farms <-> Parks
+        // Add more predefined distances as needed
+    };
+
+    // Menu-driven program
+    int choice;
+    while (true) {
+        cout << "Menu:\n";
+        cout << "1. Calculate Risk Level from Source\n";
+        cout << "2. Exit\n";
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        // Clear input buffer after reading integer
+        cin.ignore();
+
+        if (choice == 1) {
+            string sourcePlace;
+            cout << "Enter the source place: ";
+            getline(cin, sourcePlace);
+
+            // Check if the source place exists
+            if (placeIndex.find(sourcePlace) == placeIndex.end()) {
+                cout << "Invalid place name. Please enter a valid place from the list.\n";
+                continue;
+            }
+
+            // Run Bellman-Ford algorithm on the original graph (not MST)
+            vector<int> distances = bellmanFord(numPlaces, edges, placeIndex[sourcePlace]);
+
+            // Output the risk levels for all places
+            cout << "Risk Levels from " << sourcePlace << ":\n";
+            for (int i = 0; i < numPlaces; i++) {
+                if (distances[i] == INT_MAX)
+                    cout << places[i] << ": Unreachable\n";
+                else
+                    cout << places[i] << ": " << getRiskLevel(distances[i])
+                         << " (Distance: " << distances[i] << " km)\n";
+            }
+        } else if (choice == 2) {
+            cout << "Exiting program.\n";
+            break;
+        } else {
+            cout << "Invalid choice! Please try again.\n";
+        }
+    }
 
     return 0;
 }
